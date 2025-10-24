@@ -1,5 +1,5 @@
 # Securing AWS Credentials with Secrets Manager after Sanitizing Git History
-This demonstrates why hardcoding your credentials in AWS is bad practice, what happens when you try to push it to Github, and how to safely secure credentials using AWS Secrets Manager. The Credentials in this demo are fake and/or edited! This matters because hardcoding credentials in your work can put your AWS environment at risk of having data stolen, deleted work, and etc. Therefore the BEST practice is to safely secure your credentials i.e. Secrets Manager.
+This demonstrates why hardcoding your credentials in AWS is bad practice, what happens when you try to push it to Github, and how to safely secure credentials using AWS Secrets Manager. **The Credentials in this demo are fake and/or edited!** This matters because hardcoding credentials in your work can put your AWS environment at risk of having data stolen, deleted work, and etc. Therefore the BEST practice is to safely secure your credentials i.e. Secrets Manager.
 
 
 ## How It's Made👨🏿‍💻 :
