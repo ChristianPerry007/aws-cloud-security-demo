@@ -2,7 +2,7 @@
 This demonstrates why hardcoding your credentials in AWS is bad practice, what happens when you try to push it to Github, and how to safely secure credentials using AWS Secrets Manager. **The Credentials in this demo are fake and/or edited!** This matters because hardcoding credentials in your work can put your AWS environment at risk of having data stolen, deleted work, and etc. Therefore the BEST practice is to safely secure your credentials i.e. Secrets Manager.
 
 
-## How It's Made👨🏿‍💻 :
+## How It's Made:
 **Resources used:** GitHub, AWS IAM, and Secrets Manager
 
 <img width="800" height="608" alt="image" src="https://github.com/user-attachments/assets/1e612795-23ba-4a37-b190-31a5dcb842ae" />
@@ -144,7 +144,7 @@ After saving the the rebase changes, merging was happening but then I ran into a
 To check my work I did go into **config.py** in Git to make sure the secret code generated in my secrets replaced the hardcode from earlier and it did. 
 
 
-## Lessons Learned 🧠 :
+## Lessons Learned:
 
 I learned that hardcoding keys is BAD practice because anyone can get into your AWS environment since your keys are right there. After replicating this twice, securing your keys is very easy but the task can be tedious if you push your code in git and it discovers you're hardcoding your credentials because now you have to erase your history of doing so if you securely store them afterwards. It's best to default to using secret manager and secrets in general so there's no panic if credentials accidentally are leaked. I also learned TO NOT d and down arrow if you only mean to delete 1 commit. I did learn that ':q!' prevents the deleting of commit so that saved me the second time around because I almost made the first mistake again. 
 
