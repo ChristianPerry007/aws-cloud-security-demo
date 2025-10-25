@@ -129,7 +129,7 @@ Looking at the terminal again now had to find which commit had my hardcoded cred
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/brqprc1d7g0ixmnfh2nk.png)
 
 
-To get rid of the " pick 8f74393 Updated config.py with hardcoded credentials" I  scrolled down to where it says "pick" next to it and pressed 'd' TWICE and then `:wq` to save the change. 
+To get rid of the "pick 8f74393 Updated config.py with hardcoded credentials" I  scrolled down to where it says "pick" next to it and pressed 'd' TWICE and then `:wq` to save the change. 
 
 
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/1etrrw9glw0df7ai7gty.png)
