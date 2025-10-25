@@ -69,7 +69,7 @@ This is when I decided to use my own AWS Credentials (access key ID & secret acc
 
 
 
-Now that I have my keys, I shut down the app in my terminal from running on my virtual environment. When that went down, I edited **config.py** again but this time using my REAL credentials because now I should be able to connect into AWS right? So I Started the web app in the terminal again with "python app.py", went to the "**localhost:8000**", clicked on "View My S3 Buckets", and **🪄VOILÀ**...the buckets in my account have appeared!
+Now that I have my keys, I shut down the app in my terminal from running on my virtual environment. When that went down, I edited **config.py** again but this time using my REAL credentials because now I should be able to connect into AWS right? So I Started the web app in the terminal again with `python app.py`, went to the "**localhost:8000**", clicked on "View My S3 Buckets", and **🪄VOILÀ**...the buckets in my account have appeared!
 
 
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/5jyyg179dcb2nipxoh5v.png)
@@ -116,12 +116,12 @@ Opened **config.py**, deleted all the lines that had my hardcoded AWS Credential
 
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ol1tj686fey4uf6fhd7y.png)
 
-It's time to stage my changes again with "git add ." After I attempt to  push the changes, I'm ONCE AGAIN I'm met with:
+It's time to stage my changes again with `git add .` After I attempt to  push the changes, I'm ONCE AGAIN I'm met with:
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/f6vdg53ke7m8n3l2bhr6.png) 
 
-I eventually figure out that just because I changed the **config.py** by removing my hardcoded credentials and replacing them with with a secrets code that referenced my keys in AWS, I'm still not able to push my code. That's because that's not enough...Github keeps a history of all the changes you've made to your files and in this case, my commits. Next logical thing to do is some how erase the history of me committing hardcoded credentials which is where "git rebase" is useful.
+I eventually figure out that just because I changed the **config.py** by removing my hardcoded credentials and replacing them with with a secrets code that referenced my keys in AWS, I'm still not able to push my code. That's because that's not enough...Github keeps a history of all the changes you've made to your files and in this case, my commits. Next logical thing to do is some how erase the history of me committing hardcoded credentials which is where `git rebase` is useful.
 
-Looking at the terminal again now had to find which commit had my hardcoded credentials in the history. I spotted it (the 1st 7 digits were all I needed), typed "git rebase -i --root" in the terminal, and found the 7 digits along with "Updated config.py with hardcoded credentials" at the end. This is what I need to delete to be able to push my changes.  
+Looking at the terminal again now had to find which commit had my hardcoded credentials in the history. I spotted it (the 1st 7 digits were all I needed), typed `git rebase -i --root` in the terminal, and found the 7 digits along with "Updated config.py with hardcoded credentials" at the end. This is what I need to delete to be able to push my changes.  
 
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/zqixshkpmmdd8bodian5.png)
 
@@ -129,13 +129,13 @@ Looking at the terminal again now had to find which commit had my hardcoded cred
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/brqprc1d7g0ixmnfh2nk.png)
 
 
-To get rid of the " pick 8f74393 Updated config.py with hardcoded credentials" I  scrolled down to where it says "pick" next to it and pressed 'd' TWICE and then ':wq' to save the change. 
+To get rid of the " pick 8f74393 Updated config.py with hardcoded credentials" I  scrolled down to where it says "pick" next to it and pressed 'd' TWICE and then `:wq` to save the change. 
 
 
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/1etrrw9glw0df7ai7gty.png)
 
 
-_The first time I did this I pressed 'd' one time, I didn't see anything happening, I then read somewhere to press the down arrow, I tried that, then that deleted the "Updated config.py with hardcoded credentials" AND "Updated config.py to use secrets manager", didn't think anything of it, and typed ':wq'. THIS RESULTED INTO MY ENTIRE FILES BEING DELETED AND I HAD TO START OVER 🤬🤬 ._ 
+_The first time I did this I pressed 'd' one time, I didn't see anything happening, I then read somewhere to press the down arrow, I tried that, then that deleted the "Updated config.py with hardcoded credentials" AND "Updated config.py to use secrets manager", didn't think anything of it, and typed `:wq`. THIS RESULTED INTO MY ENTIRE FILES BEING DELETED AND I HAD TO START OVER 🤬🤬 ._ 
 
 
 After saving the the rebase changes, merging was happening but then I ran into a merging conflict. To resolve this, I had to open the config.py file and delete the lines that contained my hardcoded credentials and 2 other lines (======= and >>>>>>> feature-branch). After that, I saved the file, ran 'git add config.py' and 'git commit -m "Resolved merge conflicts"'. After changes were made, I continued the rebase, pushed the code, and done! The changes successfully went through to Git! 
@@ -149,6 +149,6 @@ To check my work I did go into **config.py** in Git to make sure the secret code
 
 ## Lessons Learned:
 
-I learned that hardcoding keys is BAD practice because anyone can get into your AWS environment since your keys are right there. After replicating this twice, securing your keys is very easy but the task can be tedious if you push your code in git and it discovers you're hardcoding your credentials because now you have to erase your history of doing so if you securely store them afterwards. It's best to default to using secret manager and secrets in general so there's no panic if credentials accidentally are leaked. I also learned TO NOT d and down arrow if you only mean to delete 1 commit. I did learn that ':q!' prevents the deleting of commit so that saved me the second time around because I almost made the first mistake again. 
+I learned that hardcoding keys is BAD practice because anyone can get into your AWS environment since your keys are right there. After replicating this twice, securing your keys is very easy but the task can be tedious if you push your code in git and it discovers you're hardcoding your credentials because now you have to erase your history of doing so if you securely store them afterwards. It's best to default to using secret manager and secrets in general so there's no panic if credentials accidentally are leaked. I also learned TO NOT d and down arrow if you only mean to delete 1 commit. I did learn that `:q!` prevents the deleting of commit so that saved me the second time around because I almost made the first mistake again. 
 
 
